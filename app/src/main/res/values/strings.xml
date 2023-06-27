@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Fragment</string>
+    <string name="Login">LOGIN</string>
+    <string name="Username">Username</string>
+    <string name="Passward">Passward</string>
+    <string name="Register">REGISTER</string>
+    <string name="FirstName">FirstName</string>
+    <string name="LastName">LastName</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gender">Gender</string>
+    <string name="email">Email</string>
+    <string name="re_enter_password">Re-enter Password</string>
+
+</resources>
