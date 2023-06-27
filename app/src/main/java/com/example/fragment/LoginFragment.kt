@@ -54,13 +54,13 @@ class LoginFragment : Fragment() {
             val emptyusername=username?.text.toString()
             val emptypassward=passward?.text.toString()
             if (TextUtils.isEmpty(emptyusername)){
-                Toast.makeText(requireContext(),"Username is empty",Toast.LENGTH_LONG).show()
+                error("Username is empty")
             }
             else if (TextUtils.isEmpty(emptypassward)){
-                Toast.makeText(requireContext(),"Password is empty",Toast.LENGTH_LONG).show()
+                error("Password is empty")
             }
             else {
-                Toast.makeText(requireContext(),"Success",Toast.LENGTH_LONG).show()
+                error("Success")
             }
         }
     }
