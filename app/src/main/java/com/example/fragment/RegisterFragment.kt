@@ -23,7 +23,7 @@ import java.util.regex.Pattern
 
 
 @Suppress("DEPRECATION")
-class RegisterFragment : Fragment() {
+class RegisterFragment : Fragment(), onDataPassedCommunicator{
 
     private var checkmale: CheckBox?=null
     private var checkfemale: CheckBox?=null
@@ -31,12 +31,13 @@ class RegisterFragment : Fragment() {
     private var FragedtxtFirstname: EditText?=null
     private var FragedtxtLastname: EditText?=null
     private var FragedtxtEmail: EditText?=null
-    private var edttxtaddress:EditText?=null
+    private var edttxtaddress:TextView?=null
     private var Fragedtxtviewdata: TextView?=null
     private var view: View?=null
     private var profileimageview: ImageView?=null
     private val captureImage = 1
     private val pickImage = 2
+    private var getinputdata:String=""
 
     private val PASSWORD_PATTERN: Pattern = Pattern.compile(
 
@@ -62,15 +63,16 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
           view = inflater.inflate(R.layout.fragment_register, container, false)
+
+
         initUI()
         onclicklistner()
         oncheckedlistner()
         onImageclicklistner()
         onMapclicklistener()
 
-//        val value=this.arguments?.getString("Addresstxtview").toString()
-//        edttxtaddress?.setText(value)
-
+        getinputdata=arguments?.getString("Location").toString()
+        edttxtaddress?.text=getinputdata
         return view
     }
 
@@ -79,18 +81,13 @@ class RegisterFragment : Fragment() {
 
             val intent = Intent(activity,MapForAddress::class.java)
             startActivity(intent)
+
         }
     }
 
     //show the result like in these example show image in profile
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode==101 && resultCode== RESULT_OK)
-//        {
-//            val picturebitmap : Bitmap? = data?.getParcelableExtra<Bitmap>("data")
-//            profileimageview?.setImageBitmap(picturebitmap)
-//
-//        }
 
         if (requestCode == pickImage) {
 
@@ -110,13 +107,12 @@ class RegisterFragment : Fragment() {
         FragedtxtFirstname= view?.findViewById<EditText>(R.id.FirstName)
         FragedtxtLastname= view?.findViewById<EditText>(R.id.LastName)
        FragedtxtEmail= view?.findViewById<EditText>(R.id.Email)
-       edttxtaddress= view?.findViewById<EditText>(R.id.edttxtaddressText)
+       edttxtaddress= view?.findViewById<TextView>(R.id.edttxtaddressText)
         Fragedtxtviewdata=view?.findViewById<TextView>(R.id.txtGender)
         profileimageview=view?.findViewById(R.id.ProfileImageView)
        password=view?.findViewById<EditText>(R.id.edtxtTextPassword)
        matchpassword=view?.findViewById<EditText>(R.id.edtxtTextMatchPassword)
        imgbtnmapforaddress=view?.findViewById<ImageButton>(R.id.imgbtnmapforaddress)
-
     }
 
    //onclicklistner for data show in edittext to textview
@@ -220,5 +216,15 @@ class RegisterFragment : Fragment() {
             builder.show()
         }
    }
+    override fun passdata(data: String) {
+//        val bundle=Bundle()
+//        bundle.putString("Location",data)
+//        val fragmentforlocationshow=RegisterFragment()
+//        fragmentforlocationshow.arguments=bundle
+////        supportFragmentManager.beginTransaction().replace(R.id.container,RegisterFragment()).commit()
+//        edttxtaddress?.setText(data)
+    }
+
+
 }
 

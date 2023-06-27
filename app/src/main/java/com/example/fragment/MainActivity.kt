@@ -1,12 +1,12 @@
 package com.example.fragment
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
-
 
 
     private var btnhomelogin: Button? =null
@@ -21,10 +21,7 @@ class MainActivity : AppCompatActivity() {
         this.btnhomelogin = findViewById<Button>(R.id.btnHomeLogin)
         this.btnHomeregister = findViewById<Button>(R.id.btnHomeRegister)
         clickListener()
-//        intent.getStringExtra("location")
-//        btnhomelogin?.apply {
-//            text= intent.getStringExtra("location")
-//        }
+
     }
     private fun clickListener() {
 
@@ -40,6 +37,8 @@ class MainActivity : AppCompatActivity() {
             btnHomeregister?.isVisible=false
         }
     }
+
+
 }
 
 
