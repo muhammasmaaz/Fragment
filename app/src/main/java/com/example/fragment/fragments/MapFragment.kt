@@ -1,4 +1,4 @@
-package com.example.fragment
+package com.example.fragment.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.fragment.R
+import com.example.fragment.interfaces.onDataPassedCommunicator
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -32,7 +34,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var fusedlocationproviderclient: FusedLocationProviderClient?=null
     private var Addresstxtview: TextView?=null
     private var savelocation: Button?=null
-    private lateinit var onDataPassedCommunicator:onDataPassedCommunicator
+    private lateinit var onDataPassedCommunicator: onDataPassedCommunicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +75,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val mapfragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
                 mapfragment.getMapAsync(this)
 
+
             }
         })
     }
@@ -87,20 +90,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         Addresstxtview=view?.findViewById(R.id.Addresstxtview)
         Addresstxtview?.text=getAddress(latlng)
-//        val fragment=RegisterFragment()
-//        val address=Addresstxtview?.text.toString()
-//        val bundle = Bundle()
-//        bundle.putString("Addresstxtview",address)
-//        fragment.arguments=bundle
-//        supportFragmentManager.beginTransaction().replace(R.id.constraintlayout,fragment).commit()
-
-//        activity ti activity send data
-//        Addresstxtview?.text.toString()
-//        val intent =Intent(this,MainActivity::class.java).also {
-//            it.putExtra("location",Addresstxtview?.text.toString())
-//            startActivity(it)
-//        }
-
         savelocation?.setOnClickListener {
 
             onDataPassedCommunicator.passdata(Addresstxtview?.text.toString())

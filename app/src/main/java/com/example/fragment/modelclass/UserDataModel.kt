@@ -1,4 +1,4 @@
-package com.example.fragment
+package com.example.fragment.modelclass
 
 class UserDataModel (
     var userid: String? = null,

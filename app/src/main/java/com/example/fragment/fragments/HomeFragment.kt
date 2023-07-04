@@ -1,11 +1,11 @@
-package com.example.fragment
+package com.example.fragment.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import com.example.fragment.R
 
 
 class HomeFragment : Fragment() {

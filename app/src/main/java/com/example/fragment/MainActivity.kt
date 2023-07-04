@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.core.view.isVisible
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.fragment.fragments.LoginFragment
+import com.example.fragment.fragments.RegisterFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
     private fun clickListener() {
 
         this.btnhomelogin?.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(R.id.container,LoginFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, LoginFragment()).commit()
             btnhomelogin?.isVisible=false
             btnHomeregister?.isVisible=false
 
         }
         this.btnHomeregister?.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(R.id.container,RegisterFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.container, RegisterFragment()).commit()
             btnhomelogin?.isVisible=false
             btnHomeregister?.isVisible=false
         }
