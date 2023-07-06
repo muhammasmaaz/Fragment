@@ -80,7 +80,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
-    override fun onMapReady(googlemap: GoogleMap?) {
+    override fun onMapReady(googlemap: GoogleMap) {
 
         myMap=googlemap
         val latlng = LatLng(currentlocation!!.latitude,currentlocation!!.longitude)
