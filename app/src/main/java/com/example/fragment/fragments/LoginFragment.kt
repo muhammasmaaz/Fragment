@@ -2,6 +2,7 @@ package com.example.fragment.fragments
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.fragment.Homebottomnavigationwithviewpager
 import com.example.fragment.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -86,6 +88,9 @@ class LoginFragment : Fragment() {
                             Log.d(TAG, "signInWithEmail:success")
                             val user = auth.currentUser
                             Toast.makeText(requireContext(),"Login success",Toast.LENGTH_LONG).show()
+                            val intent = Intent(activity,Homebottomnavigationwithviewpager::class.java)
+                            startActivity(intent)
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.exception)

@@ -1,14 +1,14 @@
-package com.example.fragment.fragments
+package com.example.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Button
 
 
 class HomeFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -16,11 +16,11 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        return view
+        return inflater.inflate(R.layout.fragment_home, container, false)
+
 
 
     }
-
 
 
 
