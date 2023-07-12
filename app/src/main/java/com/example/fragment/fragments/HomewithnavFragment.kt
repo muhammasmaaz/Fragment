@@ -6,8 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.fragment.R
 import com.example.fragment.interfaces.weatherapiinterface
 import com.example.fragment.weatherallclassess.Weatherapi
@@ -36,11 +39,15 @@ class HomewithnavFragment : Fragment() {
     var pressure: TextView? = null
     var humidity: TextView? = null
     var feelike: TextView? = null
+    var swiperefreshlatout: SwipeRefreshLayout? = null
+    var citytemp: EditText? = null
+    var searchcity: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,8 +66,18 @@ class HomewithnavFragment : Fragment() {
         pressure= view.findViewById(R.id.pressure)
         humidity= view.findViewById(R.id.humidity)
         feelike= view.findViewById(R.id.status)
+        swiperefreshlatout= view.findViewById(R.id.swiperefreshlayout)
+        citytemp= view.findViewById(R.id.cityTemp)
+        searchcity= view.findViewById(R.id.searchcity)
 
-        fetchweatherdata()
+        searchcity?.setOnClickListener {
+            fetchweatherdata()
+
+        }
+        swiperefreshlatout?.setOnRefreshListener {
+            fetchweatherdata()
+            swiperefreshlatout?.isRefreshing=false
+        }
         return view
     }
 
@@ -70,7 +87,10 @@ class HomewithnavFragment : Fragment() {
             .baseUrl(BASE_URL)
             .build()
             .create(weatherapiinterface::class.java)
-        val response = retrofit.getWeatherData("Lahore", "907d232eaa93fcce054f3599021123df" , "metric")
+
+        val response = retrofit.getWeatherData(citytemp?.text.toString(), "907d232eaa93fcce054f3599021123df" , "metric")
+
+
 
 
         response.enqueue(object : Callback<Weatherapi> {
@@ -84,7 +104,7 @@ class HomewithnavFragment : Fragment() {
                 tempmin!!.text = "Mini Temp: "+responseBody.list[0].main.temp_min.toString()
                 address!!.text = responseBody.city.name
 
-                val simpleDateFormat = SimpleDateFormat("hh:mm a")
+                val simpleDateFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH)
                 val dateandtime = SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH)
                 val currentDate = dateandtime.format(Date())
                 updateat!!.text=currentDate
@@ -95,7 +115,7 @@ class HomewithnavFragment : Fragment() {
                 wind!!.text = responseBody.list[0].wind.speed.toString()+" mi/h"
                 pressure!!.text = responseBody.list[0].main.pressure.toString()+" hpa"
                 humidity!!.text = responseBody.list[0].main.humidity.toString()+" %"
-                feelike!!.text = responseBody.list[0].weather[0].main
+                feelike!!.text = responseBody.list[0].weather[0].description
 
 
 

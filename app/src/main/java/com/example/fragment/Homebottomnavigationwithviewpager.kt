@@ -51,9 +51,9 @@ class Homebottomnavigationwithviewpager : AppCompatActivity() {
         pagerhomebottomnav.adapter = adapter
         bottomnav?.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> pagerhomebottomnav.currentItem = 0
+                R.id.dashboard -> pagerhomebottomnav.currentItem = 0
 
-                R.id.dashboard -> pagerhomebottomnav.currentItem = 1
+                R.id.home -> pagerhomebottomnav.currentItem = 1
 
                 R.id.profile -> pagerhomebottomnav.currentItem = 2
                 else -> {

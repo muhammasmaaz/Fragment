@@ -13,8 +13,9 @@ class ViewPagerAdopter(fragmentmanger:FragmentManager): FragmentPagerAdapter(fra
     override fun getItem(position: Int): Fragment {
 
         return when (position) {
-            0 -> HomewithnavFragment()
-            1 -> DashboardFragment()
+
+            0 -> DashboardFragment()
+            1 -> HomewithnavFragment()
             else -> profileFragment()
         }
 
