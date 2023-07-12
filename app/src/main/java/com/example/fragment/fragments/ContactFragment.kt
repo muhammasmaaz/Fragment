@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.fragment.R
 
 
-class DashboardFragment : Fragment() {
+class ContactFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view= inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val view= inflater.inflate(R.layout.fragment_contact, container, false)
 
 
 

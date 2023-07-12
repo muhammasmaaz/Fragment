@@ -53,7 +53,7 @@ class HomewithnavFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view= inflater.inflate(R.layout.fragment_homewithnav, container, false)
+        val view= inflater.inflate(R.layout.fragment_weather, container, false)
 
         temp = view.findViewById(R.id.temp)
         tempmax = view.findViewById(R.id.temp_max)
