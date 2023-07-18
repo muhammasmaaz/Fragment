@@ -3,14 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
 
     <uses-feature
         android:name="android.hardware.camera.any"
         android:required="true" />
     <uses-feature
         android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
         android:required="false" /> <!-- <uses-permission android:name="android.permission.CAMERA"/> -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -26,22 +35,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fragment">
+
+
+        <service
+            android:name=".MusicPlayerServices.MusicPlayerService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".Homebottomnavigationwithviewpager"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".HomewithBottomnavigation"-->
-<!--            android:exported="false"-->
-<!--            android:label="@string/title_activity_homewith_bottomnavigation" />-->
-<!--        <activity-->
-<!--            android:name=".HomeWithBottomNavigationandSideDrawer"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".HomeBottomNavigationandSideDrawerActivity"-->
-<!--            android:exported="false"-->
-<!--            android:label="@string/title_activity_home_bottom_navigationand_side_drawer"-->
-<!--            android:theme="@style/Theme.Fragment" />-->
-
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".HomewithBottomnavigation" -->
+        <!-- android:exported="false" -->
+        <!-- android:label="@string/title_activity_homewith_bottomnavigation" /> -->
+        <!-- <activity -->
+        <!-- android:name=".HomeWithBottomNavigationandSideDrawer" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".HomeBottomNavigationandSideDrawerActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:label="@string/title_activity_home_bottom_navigationand_side_drawer" -->
+        <!-- android:theme="@style/Theme.Fragment" /> -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBwk4WBLAnXBtpfQ9ny2cv82m9sY3HN5eA" />

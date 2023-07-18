@@ -1,6 +1,8 @@
 package com.example.fragment.fragments
 
 import android.annotation.SuppressLint
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +11,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.RECEIVER_VISIBLE_TO_INSTANT_APPS
+import androidx.core.content.ContextCompat.registerReceiver
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.fragment.R
 import com.example.fragment.interfaces.weatherapiinterface
+import com.example.fragment.modelclass.ConnectivityReceiver
 import com.example.fragment.weatherallclassess.Weatherapi
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +31,7 @@ import java.util.Locale
 
 
 const val BASE_URL="https://api.openweathermap.org/data/2.5/"
-class HomewithnavFragment : Fragment() {
+class HomewithnavFragment : Fragment() , ConnectivityReceiver.ConnectivityReceiverListener {
     //https://api.openweathermap.org/data/2.5/forecast?q=Lahore&appid=907d232eaa93fcce054f3599021123df&units=metric
 
     var temp: TextView? = null
@@ -70,6 +76,8 @@ class HomewithnavFragment : Fragment() {
         citytemp= view.findViewById(R.id.cityTemp)
         searchcity= view.findViewById(R.id.searchcity)
 
+
+        registerReceiver(requireContext(),ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION),RECEIVER_VISIBLE_TO_INSTANT_APPS)
         searchcity?.setOnClickListener {
             fetchweatherdata()
 
@@ -78,9 +86,25 @@ class HomewithnavFragment : Fragment() {
             fetchweatherdata()
             swiperefreshlatout?.isRefreshing=false
         }
+
         return view
     }
 
+    override fun onNetworkConnectionChanged(isConnected: Boolean) {
+        showNetworkMessage(isConnected)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ConnectivityReceiver.connectivityReceiverListener = this
+    }
+    private fun showNetworkMessage(isConnected: Boolean) {
+        if (!isConnected) {
+            Toast.makeText(requireContext(),"you are offline", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(),"you are online", Toast.LENGTH_LONG).show()
+        }
+    }
     private fun fetchweatherdata() {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
